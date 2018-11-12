@@ -56,12 +56,6 @@ class ViewController: UIViewController {
         externalWindow.rootViewController = vc
         externalWindow.isHidden = false
         
-        // let view1 = UIView (frame: CGRect (x:10, y:10, width:50, height:50))
-        // view1.backgroundColor = .red
-        
-        // vc.view = view1
-        // vc.view.backgroundColor = .gray
-        
         drawScreen()
     }
     
@@ -117,6 +111,12 @@ class ExternalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
+        
+        let view1 = UIView(frame: CGRect (x:10, y:10, width:50, height:50))
+        view1.backgroundColor = .red
+        
+        self.view.addSubview(view1)
+        
     }
 }
 
