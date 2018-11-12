@@ -13,6 +13,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var resLabel: UILabel!
     @IBOutlet weak var orientationLabel: UILabel!
     @IBOutlet weak var screenTwoLabel: UILabel!
+    
+    
+    var externalWindow: UIWindow!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,22 +45,23 @@ class ViewController: UIViewController {
     @objc func screenDidConnect (notification: NSNotification) {
         print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
         
-        guard let screen = notification.object as? UIScreen else {
-            return
+        if let screen = notification.object as? UIScreen {
+            self.initExternalScreen (externalScreen: screen)
         }
-
-        // let extScreen = UIScreen.screens.last
-        let externalScreen = screen
-        print ("xs = \(externalScreen.bounds.width) x \(externalScreen.bounds.height) = \(externalScreen.currentMode!.size.width) x \(externalScreen.currentMode!.size.height)")
-        
-        let vc = ExternalViewController()
-        
-        let externalWindow = UIWindow(frame: externalScreen.bounds)
-        externalWindow.screen = externalScreen
-        externalWindow.rootViewController = vc
-        externalWindow.isHidden = false
         
         drawScreen()
+    }
+    
+    
+    func initExternalScreen (externalScreen: UIScreen) {
+        print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
+        
+        self.externalWindow = UIWindow (frame: externalScreen.bounds)
+        self.externalWindow.screen = externalScreen
+        let view = UIView (frame: self.externalWindow.frame)
+        view.backgroundColor = .white
+        self.externalWindow.addSubview(view)
+        self.externalWindow.isHidden = false
     }
     
     
@@ -66,6 +71,8 @@ class ViewController: UIViewController {
         guard let _ = notification.object as? UIScreen else {
             return
         }
+        
+        self.externalWindow.isHidden = true
         
         drawScreen()
     }
@@ -104,19 +111,3 @@ class ViewController: UIViewController {
         }
     }
 }
-
-
-
-class ExternalViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
-        
-        let view1 = UIView(frame: CGRect (x:10, y:10, width:50, height:50))
-        view1.backgroundColor = .red
-        
-        self.view.addSubview(view1)
-        
-    }
-}
-
