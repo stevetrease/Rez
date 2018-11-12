@@ -14,15 +14,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var orientationLabel: UILabel!
     @IBOutlet weak var screenTwoLabel: UILabel!
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
         // Do any additional setup after loading the view, typically from a nib.
         
-        screenTwoLabel.isHidden = true
-        drawScreen()
+       drawScreen()
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver (self, selector: #selector(ViewController.screenDidConnect), name: UIScreen.didConnectNotification, object: nil)
@@ -35,22 +33,46 @@ class ViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
+        
         drawScreen()
     }
     
     
-    @objc func screenDidConnect () {
+    @objc func screenDidConnect (notification: NSNotification) {
         print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
-        let extScreen = UIScreen.screens.last
-        print (extScreen?.bounds.width)
-        print (extScreen?.bounds.height)
-        print (extScreen?.currentMode!.size.height)
-        print (extScreen?.currentMode!.size.height)
+        
+        guard let screen = notification.object as? UIScreen else {
+            return
+        }
+
+        // let extScreen = UIScreen.screens.last
+        let externalScreen = screen
+        print ("xs = \(externalScreen.bounds.width) x \(externalScreen.bounds.height) = \(externalScreen.currentMode!.size.width) x \(externalScreen.currentMode!.size.height)")
+        
+        let vc = ExternalViewController()
+        
+        let externalWindow = UIWindow(frame: externalScreen.bounds)
+        externalWindow.screen = externalScreen
+        externalWindow.rootViewController = vc
+        externalWindow.isHidden = false
+        
+        // let view1 = UIView (frame: CGRect (x:10, y:10, width:50, height:50))
+        // view1.backgroundColor = .red
+        
+        // vc.view = view1
+        // vc.view.backgroundColor = .gray
+        
         drawScreen()
     }
     
-    @objc func screenDidDisconnect () {
+    
+    @objc func screenDidDisconnect (notification: NSNotification) {
         print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
+        
+        guard let _ = notification.object as? UIScreen else {
+            return
+        }
+        
         drawScreen()
     }
     
@@ -74,26 +96,27 @@ class ViewController: UIViewController {
             orientationLabel.text = "Portrait"
         }
         
-
-        if UIScreen.screens.count == 1 {
-            screenTwoLabel.isHidden = true
-        } else {
-            screenTwoLabel.isHidden = false
+        screenTwoLabel.text = ""
+        print ("screens: \(UIScreen.screens.count)")
+        for screen in UIScreen.screens {
+            var sWidth = Int(screen.bounds.width)
+            var sHeight = Int(screen.bounds.height)
+            screenTwoLabel.text = screenTwoLabel.text! + "\n" + "\(sWidth) x \(sHeight) = "
+            print ("- \(sWidth) x \(sHeight)")
             
-            screenTwoLabel.text = ""
-            print ("screens: \(UIScreen.screens.count)")
-            for screen in UIScreen.screens {
-                var sWidth = Int(screen.bounds.width)
-                var sHeight = Int(screen.bounds.height)
-                screenTwoLabel.text = screenTwoLabel.text! + "\n" + "\(sWidth) x \(sHeight) = "
-                print ("- \(sWidth) x \(sHeight)")
-                
-                sWidth = Int(screen.currentMode!.size.width)
-                sHeight = Int(screen.currentMode!.size.height)
-                screenTwoLabel.text = screenTwoLabel.text! + "\(sWidth) x \(sHeight)" + "\n"
-            }
+            sWidth = Int(screen.currentMode!.size.width)
+            sHeight = Int(screen.currentMode!.size.height)
+            screenTwoLabel.text = screenTwoLabel.text! + "\(sWidth) x \(sHeight)"
         }
-        
     }
-    
 }
+
+
+
+class ExternalViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
+    }
+}
+
