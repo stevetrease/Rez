@@ -73,7 +73,9 @@
 			buildPhases = (
 				AAE1CF6921974A6D0099D1B6 /* Sources */,
 				AAE1CF6A21974A6D0099D1B6 /* Frameworks */,
+				AA179E0E219995AF00096B80 /* ShellScript */,
 				AAE1CF6B21974A6D0099D1B6 /* Resources */,
+				AA179E0F219995D300096B80 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -129,6 +131,43 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AA179E0E219995AF00096B80 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./updateSplashScreen.sh\n";
+		};
+		AA179E0F219995D300096B80 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./updateBuildVersionNumber.sh\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AAE1CF6921974A6D0099D1B6 /* Sources */ = {
