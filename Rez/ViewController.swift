@@ -63,19 +63,19 @@ class ViewController: UIViewController {
         self.externalWindow.addSubview(view)
         self.externalWindow.isHidden = false
         
-        
         let screenWidth = Int(view.bounds.size.width)
         let screenHeight = Int(view.bounds.size.height)
         
+        
         let label = UILabel()
-        label.center.x = view.center.x
-        label.center.y = view.center.y
-        label.text = "\(screenWidth) x \(screenHeight)"
-        label.numberOfLines = 0
-        // label.frame = CGRect(x: view.bounds.size.width / 2, y: view.bounds.size.height / 2, width: view.bounds.size.width, height: view.bounds.size.height)
-        label.textAlignment = .center
-        label.sizeToFit()
         view.addSubview(label)
+         
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        label.textAlignment = .center
+        label.text = "\(screenWidth) x \(screenHeight)"
     }
     
     
