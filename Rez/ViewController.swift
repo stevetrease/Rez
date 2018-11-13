@@ -74,6 +74,7 @@ class ViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        label.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         label.textAlignment = .center
         label.text = "\(screenWidth) x \(screenHeight)"
     }
@@ -100,7 +101,8 @@ class ViewController: UIViewController {
         var screenWidth = Int(screen.bounds.width)
         var screenHeight = Int(screen.bounds.height)
         let screenScale = Int(screen.scale)
-        resLabel.text = "\(screenWidth) x \(screenHeight) (\(screenScale)x)"
+        resLabel.text = "\(UIDevice().model) \(UIDevice().systemName) \(UIDevice().systemVersion)"
+        resLabel.text = resLabel.text! + "\n" + "\(screenWidth) x \(screenHeight) (\(screenScale)x)"
         screenWidth = Int(screen.currentMode!.size.width)
         screenHeight = Int(screen.currentMode!.size.height)
         resLabel.text = resLabel.text! + " = " + "\(screenWidth) x \(screenHeight)"
