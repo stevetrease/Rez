@@ -24,13 +24,12 @@ class ViewController: UIViewController {
         print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
         // Do any additional setup after loading the view, typically from a nib.
         
-       drawScreen()
+        drawScreen()
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver (self, selector: #selector(ViewController.screenDidConnect), name: UIScreen.didConnectNotification, object: nil)
         notificationCenter.addObserver (self, selector: #selector(ViewController.screenDidDisconnect), name: UIScreen.didDisconnectNotification, object: nil)
         notificationCenter.addObserver (self, selector: #selector(ViewController.drawScreen), name: UIScreen.modeDidChangeNotification, object: nil)
-        
     }
     
     
