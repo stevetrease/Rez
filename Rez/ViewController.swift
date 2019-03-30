@@ -65,10 +65,18 @@ class ViewController: UIViewController {
         let screenWidth = Int(view.bounds.size.width)
         let screenHeight = Int(view.bounds.size.height)
         
+        let factor: CGFloat = 0.99
+        let box = UIView (frame: CGRect (x: (view.bounds.size.width - (view.bounds.size.width * factor)) / 2.0,
+                                         y: (view.bounds.size.height - (view.bounds.size.height * factor)) / 2.0,
+                                         width: view.bounds.size.width * factor,
+                                         height: view.bounds.size.height * factor))
+        box.backgroundColor = .lightGray
+        view.addSubview(box)
+        
         
         let label = UILabel()
         view.addSubview(label)
-         
+        
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
