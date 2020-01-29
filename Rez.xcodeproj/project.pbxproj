@@ -15,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AAAD726023E17C540020635E /* Rez.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Rez.entitlements; sourceTree = "<group>"; };
 		AAE1CF6D21974A6D0099D1B6 /* Rez.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rez.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE1CF7021974A6D0099D1B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAE1CF7221974A6D0099D1B6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +55,7 @@
 		AAE1CF6F21974A6D0099D1B6 /* Rez */ = {
 			isa = PBXGroup;
 			children = (
+				AAAD726023E17C540020635E /* Rez.entitlements */,
 				AAE1CF7021974A6D0099D1B6 /* AppDelegate.swift */,
 				AAE1CF7221974A6D0099D1B6 /* ViewController.swift */,
 				AAE1CF7421974A6D0099D1B6 /* Main.storyboard */,
@@ -322,15 +324,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Rez/Rez.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 22648A4K3P;
 				INFOPLIST_FILE = Rez/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = eu.trease.Rez;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.trease.Rez;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -340,15 +346,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Rez/Rez.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 22648A4K3P;
 				INFOPLIST_FILE = Rez/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = eu.trease.Rez;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.trease.Rez;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
